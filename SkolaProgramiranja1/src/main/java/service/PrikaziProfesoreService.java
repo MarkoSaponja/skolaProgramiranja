@@ -27,4 +27,10 @@ public class PrikaziProfesoreService {
 		
 		dao.dodajPredmetProfesoru(idProfesor,idPredmet);
 	}
+
+	public void obrisiPredmetProfesora(String idProfesor, String idPredmet) {
+
+		dao.obrisiPredmetProfesora(idProfesor, idPredmet);
+		
+	}
 }

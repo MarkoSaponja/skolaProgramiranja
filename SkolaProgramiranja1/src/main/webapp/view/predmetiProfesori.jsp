@@ -53,6 +53,16 @@
 		<input type="submit" value="DODAJ PREDMET PROFESORU">
 	</form>
 
+	<p>IZBRISI PREDMET</p>
+	<form action="ObrisiPredmetProfesoruController" method="get">
+		<input type="hidden" name="idProfesor" value="${profesor.idUserDetails}">
+		<select name="idPredmet">
+			<c:forEach var="pr" items="${sviPredmeti}">
+		 		<option value="${pr.idPredmet}">${pr.nazivPredmeta}</option>
+			</c:forEach>
+		</select>
+		<input type="submit" value="OBRISI PREDMET PROFESORU">
+	</form>
 
 </body>
 </html>

@@ -147,4 +147,32 @@ public class PrikaziProfesoreDao {
 		}
 		
 	}
+
+	public void obrisiPredmetProfesora(String idProfesor, String idPredmet) {
+
+		Profesor prof = new Profesor();
+		Predmet predmet = new Predmet();
+		
+		Session session = sf.openSession();
+		session.beginTransaction();
+		
+		try {
+			prof = session.get(Profesor.class, Integer.parseInt(idProfesor));
+			Hibernate.initialize(prof.getPredmetiKojePredaje());
+			
+			predmet = session.get(Predmet.class, Integer.parseInt(idPredmet));
+			prof.getPredmetiKojePredaje().remove(predmet);
+			session.saveOrUpdate(prof);
+			
+			session.getTransaction().commit();
+			System.out.println("Uspesno obrisan predmet...");
+		} catch (Exception e) {
+			
+			session.getTransaction().rollback();
+			System.out.println("Nije u redu metoda obrisiPredmetProfesora()");
+		}finally {
+			session.close();
+		}
+		
+	}
 }
